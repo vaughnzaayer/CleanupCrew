@@ -12,6 +12,7 @@ class MainMapManager:
         self.airlock.MainMapManager = self
         self.bossRoom = None
         self.numberOfRooms = numberOfRooms
+        self.numberOfDrives = 3
         self.GREY = (115, 115, 115)
         self.dir = None
 
@@ -22,8 +23,11 @@ class MainMapManager:
         # mapMatrices coordinates follow [row, column] or [y, x]
         self.mapMatrices[0][0] = self.airlock
 
+        self.listOfRooms = []
+
         self.genRooms(self.numberOfRooms)
         self.connectMatrix()
+        self.generateInRooms()
 
     def genRooms(self, numberOfRooms):
         totalRooms = 0
@@ -65,6 +69,7 @@ class MainMapManager:
     def connectMatrix(self):
         # Scan through each room -- if there is a room next to it, connect it to its neighbor
         # EXCEPT if its an airlock -- only one enterance/exit to the right
+
         row = 0
         column = 0
         while row < len(self.mapMatrices):
@@ -99,10 +104,24 @@ class MainMapManager:
                                 room[0].assignRight(currWorkingRoom)
                                 currWorkingRoom.assignLeft(room[0])
                         currWorkingRoom.MainMapManager = self
-                        currWorkingRoom.updateRender()
+                        self.listOfRooms.append(currWorkingRoom)
+                        # currWorkingRoom.updateRender()
                 column += 1
             row += 1
         print('DONE')
+
+    def generateInRooms(self):
+        currNumberOfDrives = 0
+        while currNumberOfDrives < self.numberOfDrives:
+            for room in self.listOfRooms:
+                if random.randint(0, 75) == 7:
+                    room.hasDataDrive = True
+                    currNumberOfDrives += 1
+
+        for room in self.listOfRooms:
+            room.updateRender()
+
+
 
     def beginPlayer(self):
         return self.mapMatrices[0][0]

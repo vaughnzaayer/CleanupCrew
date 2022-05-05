@@ -6,6 +6,7 @@ from Enemy import Enemy
 from Door import Door
 from Hatch import Hatch
 from Ladder import Ladder
+from DataDrive import DataDrive
 from Physics import *
 
 
@@ -17,6 +18,8 @@ class Room(Scene):
 
     def __init__(self, color, willSpawnEnemies):
         self.MainMapManager = None
+
+        self.frameCount = 0
 
         self.color = color
 
@@ -82,6 +85,10 @@ class Room(Scene):
         self.projectiles = pygame.sprite.Group()
         self.ladders = pygame.sprite.Group()
 
+        self.dataDrive = None
+        self.dataDriveGroup = pygame.sprite.Group()
+        self.hasDataDrive = False
+
 
         self.listOfWalls = [self.wallNorth, self.wallSouth, self.wallEast, self.wallWest]
 
@@ -112,7 +119,7 @@ class Room(Scene):
                 numberOfEnemies = 0
             elif numberOfEnemies < 50:
                 numberOfEnemies = 1
-            elif numberOfEnemies < 75:
+            elif numberOfEnemies < 90:
                 numberOfEnemies = 2
             elif numberOfEnemies < 100:
                 numberOfEnemies = 3
@@ -260,6 +267,14 @@ class Room(Scene):
                 newLadder.rect.y = 120 * i
                 i += 1
 
+        if self.hasDataDrive:
+            self.dataDrive = DataDrive(self)
+            self.dataDrive.rect.x = 1280 // 2
+            self.dataDrive.rect.y = 720 // 2
+            self.dataDriveGroup.add(self.dataDrive)
+
+
+
 
     def resetPlayerPos(self, playerPos):
         self.player.velocity = Vector2D(0.0, 0.0)
@@ -270,14 +285,18 @@ class Room(Scene):
         pass
 
     def on_update(self):
+        self.dataDriveGroup.update()
         self.doors.update()
         self.activeSprites.update()
         self.player.update()
 
+
     def on_draw(self, screen):
         self.ladders.draw(screen)
         self.doors.draw(screen)
+        self.dataDriveGroup.draw(screen)
         self.activeSprites.draw(screen)
+
 
 
 

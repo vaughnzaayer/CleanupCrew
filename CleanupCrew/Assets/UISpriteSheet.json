@@ -1,66 +1,66 @@
 { "frames": {
    "UISpriteSheet 0.aseprite": {
-    "frame": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "frame": { "x": 0, "y": 0, "w": 120, "h": 120 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
-    "sourceSize": { "w": 30, "h": 30 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
     "duration": 100
    },
    "UISpriteSheet 1.aseprite": {
-    "frame": { "x": 30, "y": 0, "w": 30, "h": 30 },
+    "frame": { "x": 120, "y": 0, "w": 120, "h": 120 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
-    "sourceSize": { "w": 30, "h": 30 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
     "duration": 100
    },
    "UISpriteSheet 2.aseprite": {
-    "frame": { "x": 60, "y": 0, "w": 30, "h": 30 },
+    "frame": { "x": 240, "y": 0, "w": 120, "h": 120 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
-    "sourceSize": { "w": 30, "h": 30 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
     "duration": 100
    },
    "UISpriteSheet 3.aseprite": {
-    "frame": { "x": 90, "y": 0, "w": 30, "h": 30 },
+    "frame": { "x": 360, "y": 0, "w": 120, "h": 120 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
-    "sourceSize": { "w": 30, "h": 30 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
     "duration": 100
    },
    "UISpriteSheet 4.aseprite": {
-    "frame": { "x": 120, "y": 0, "w": 30, "h": 30 },
+    "frame": { "x": 480, "y": 0, "w": 120, "h": 120 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
-    "sourceSize": { "w": 30, "h": 30 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
     "duration": 100
    },
    "UISpriteSheet 5.aseprite": {
-    "frame": { "x": 150, "y": 0, "w": 30, "h": 30 },
+    "frame": { "x": 600, "y": 0, "w": 120, "h": 120 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
-    "sourceSize": { "w": 30, "h": 30 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
     "duration": 100
    },
    "UISpriteSheet 6.aseprite": {
-    "frame": { "x": 180, "y": 0, "w": 30, "h": 30 },
+    "frame": { "x": 720, "y": 0, "w": 120, "h": 120 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
-    "sourceSize": { "w": 30, "h": 30 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
     "duration": 100
    },
    "UISpriteSheet 7.aseprite": {
-    "frame": { "x": 210, "y": 0, "w": 30, "h": 30 },
+    "frame": { "x": 840, "y": 0, "w": 120, "h": 120 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
-    "sourceSize": { "w": 30, "h": 30 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
     "duration": 100
    }
  },
@@ -69,7 +69,7 @@
   "version": "1.2.30",
   "image": "UISpriteSheet.png",
   "format": "RGBA8888",
-  "size": { "w": 240, "h": 30 },
+  "size": { "w": 960, "h": 120 },
   "scale": "1",
   "frameTags": [
   ],

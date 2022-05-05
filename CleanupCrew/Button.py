@@ -15,11 +15,15 @@ class Button(pygame.sprite.Sprite):
         self.labelTxt = label
         self.func = None
         self.scene = None
+        self.director = None
         self.font = pygame.font.Font('Assets/ARCADECLASSIC.TTF', height)
         self.btnTxt = self.font.render(self.labelTxt, True, (99, 27, 52))
         self.image.blit(self.btnTxt, (self.rect.x + 40, self.rect.y))
 
         # Impose text here
+
+    def assignDirector(self, director):
+        self.director = director
 
     def assignScene(self, scene):
         self.scene = scene
@@ -47,3 +51,19 @@ class Button(pygame.sprite.Sprite):
             print('boop')
             if self.mouseOver(mousePos):
                 self.onClick()
+
+    def clickedOnDirector(self, mousePos):
+        if self.director.click:
+            print('boop')
+            if self.mouseOver(mousePos):
+                self.onClick()
+
+    def updateButton(self, mousePos):
+        if self.mouseOver(mousePos):
+            self.image.fill((99, 27, 52))
+            self.btnTxt = self.font.render(self.labelTxt, True, (11, 138, 143))
+            self.image.blit(self.btnTxt, (self.rect.x + 40, self.rect.y))
+        else:
+            self.image.fill((11, 138, 143))
+            self.btnTxt = self.font.render(self.labelTxt, True, (99, 27, 52))
+            self.image.blit(self.btnTxt, (self.rect.x + 40, self.rect.y))

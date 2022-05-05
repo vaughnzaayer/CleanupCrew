@@ -2,6 +2,8 @@ import pygame, sys
 from Player import Player
 from MainMapManager import MainMapManager
 from UIandStatsManager import UIandStats
+from PauseMenuUI import PauseMenuUI
+from GameOver import GameOver
 
 class Director:
     def __init__(self):
@@ -12,16 +14,19 @@ class Director:
         self.scene = None
         self.quit_signal = False
         self.clock = pygame.time.Clock()
-        self.MainMapManager = MainMapManager(14)
-        self.MainMapManager.dir = self
+        self.MainMapManager = None
         self.UIandStatsManager = UIandStats(self)
         self.UIRender = self.UIandStatsManager.getUIRender()
         self.renderUI = False
         self.click = False
         self.unpaused = True
+        self.ingame = False
         self.verFont = pygame.font.Font('Assets/ARCADECLASSIC.TTF', 20)
-        self.version = self.verFont.render('ALPHA   0 0 5', True, (48, 255, 185))
+        self.version = self.verFont.render('VER   1 0 0', True, (48, 255, 185))
+        self.author = self.verFont.render('BY  VAUGHN  Z', True, (48, 255, 185))
         self.screen.blit(self.version, (0, 700))
+        self.PauseUI = PauseMenuUI(self)
+        self.PauseUIElements = self.PauseUI.getElements()
 
 
 
@@ -41,10 +46,10 @@ class Director:
                 else:
                     self.click = False
 
-
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_LEFT:
                         self.scene.player.vertMove(-1)
+
                     if event.key == pygame.K_RIGHT:
                         self.scene.player.vertMove(1)
 
@@ -84,6 +89,10 @@ class Director:
             if self.unpaused:
                 # -- EVENT DETECTION --
                 self.scene.on_event()
+                if self.UIandStatsManager.playerHealth <= 0:
+                    self.ingame = False
+                    self.renderUI = False
+                    self.changeScene(GameOver(self), None)
 
                 # -- SCREEN UPDATE --
                 self.scene.on_update()
@@ -96,18 +105,34 @@ class Director:
                 if self.renderUI:
                     self.UIRender.draw(self.screen)
                     self.UIandStatsManager.updateUIRender(self.screen)
-                pygame.display.flip()
+
+            else:
+                if self.ingame:
+                    self.PauseUIElements.draw(self.screen)
+                    self.screen.blit(self.PauseUI.pausedText, (1280 // 2 - 100, 100))
+                    mousePos = pygame.mouse.get_pos()
+                    self.PauseUI.resumeBtn.clickedOnDirector(mousePos)
+                    self.PauseUI.returnBtn.clickedOnDirector(mousePos)
+
+
+            pygame.display.flip()
 
     def changeScene(self, scene, playerPos):
         self.scene = scene
         if playerPos != None:
             self.scene.resetPlayerPos(playerPos)
+            self.scene.player.iFrames = 100
 
 
 
     def startMMM(self):
+        if self.MainMapManager != None:
+            del self.MainMapManager
+        self.MainMapManager = MainMapManager(14)
+        self.MainMapManager.dir = self
         self.scene = self.MainMapManager.beginPlayer()
         self.renderUI = True
+        self.ingame = True
 
     def quit(self):
         self.quit_signal = True

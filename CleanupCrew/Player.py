@@ -8,12 +8,11 @@ class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
 
-        self.sprite_sheet = SpriteSheet('Assets/MCAnim.png')
+        self.sprite_sheet = SpriteSheet('Assets/MCAnimUPSCALE.png')
 
         self.animationManager = AnimationHandler(self.sprite_sheet)
 
-        self.image = self.sprite_sheet.parse_sprite('MCAnim 0.aseprite')
-        self.image = pygame.transform.scale(self.image, (120, 120))
+        self.image = self.sprite_sheet.parse_sprite('MCAnimUPSCALE 0.aseprite')
         self.rect = self.image.get_rect()
         self.rect = self.rect.inflate(-30, 0)
 
@@ -62,10 +61,13 @@ class Player(pygame.sprite.Sprite):
         self.coolDownFramesRanged = 40
         self.currCoolDownNum = 0
 
+        self.iFrames = 0
+
         self.idleAnim, self.idleAnimRev = self.animationManager.createAnim([0, 1], 60, True)
-        self.runAnim, self.runAnimRev = self.animationManager.createAnim([2, 3, 4, 5, 6, 7], 20, True)
+        self.runAnim, self.runAnimRev = self.animationManager.createAnim([2, 3, 4, 5, 6, 7], 15, True)
         self.meleeAttackAnim, self.meleeAttackAnimRev = self.animationManager.createAnim([8, 9, 10, 11, 12, 13], 10, True)
         self.rangeAttackAnim, self.rangeAttackAnimRev = self.animationManager.createAnim([14, 15, 16, 17], 10, True)
+        self.ladderClimbingAnim = self.animationManager.createAnim([18, 19, 20, 21], 20, False)
 
     def vertMove(self, x):
         if x == -1:
@@ -195,23 +197,36 @@ class Player(pygame.sprite.Sprite):
 
         if pygame.sprite.spritecollideany(self, self.ladders) != None:
             self.isTouchingLadder = True
+            if self.velocity.dy != 0 and self.isOnGround == False:
+                self.ladderClimbingAnim(self)
         else:
             self.isTouchingLadder = False
+
+        # if self.dataDrive != None:
+        #     if pygame.sprite.collide_rect(self, self.dataDrive):
+        #         print('Drive collected!')
+        #         self.scene.hasDataDrive = False
+        #         self.scene.MainMapManager.dir.UIandStatsManager.drivesCollected += 1
+
 
 
         if self.enemies != None:
             for enemy in self.enemies.sprites():
                 if self.facingRight:
                     if self.isAttackingMelee and self.currCoolDownNum <= self.coolDownFramesMelee // 12 and pygame.sprite.collide_rect(self.forwardHB, enemy):
-                        enemy.health -= 1
+                        enemy.health -= 3
                         enemy.knockback += 3
                         enemy.velocity.dy = -10
 
                 else:
                     if self.isAttackingMelee and self.currCoolDownNum <= self.coolDownFramesMelee // 12 and pygame.sprite.collide_rect(self.backwardHB, enemy):
-                        enemy.health -= 1
+                        enemy.health -= 3
                         enemy.knockback -= 3
                         enemy.velocity.dy = -10
+
+
+        if self.iFrames != 0:
+            self.iFrames -= 1
 
 
 

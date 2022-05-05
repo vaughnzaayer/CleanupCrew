@@ -110,13 +110,14 @@ class Enemy(pygame.sprite.Sprite):
 
         if self.trackingPlayer != None and self.scene.MainMapManager.dir != None:
             if pygame.sprite.collide_rect(self, self.trackingPlayer):
-                if self.scene.MainMapManager.dir.UIandStatsManager.playerHealth > 0:
+                if self.scene.MainMapManager.dir.UIandStatsManager.playerHealth > 0 and self.trackingPlayer.iFrames == 0:
                     self.scene.MainMapManager.dir.UIandStatsManager.playerHealth -= 1
                     if self.facingRight:
                         self.trackingPlayer.velocity.dx = 5
                     else:
                         self.trackingPlayer.velocity.dx = -5
                     self.trackingPlayer.velocity.dy = -5
+                    self.trackingPlayer.iFrames = 45
 
 
         horiz_walls_hit = pygame.sprite.spritecollide(self, self.horizWalls, False)

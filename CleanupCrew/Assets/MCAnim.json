@@ -142,6 +142,38 @@
     "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
     "sourceSize": { "w": 30, "h": 30 },
     "duration": 100
+   },
+   "MCAnim 18.aseprite": {
+    "frame": { "x": 540, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 250
+   },
+   "MCAnim 19.aseprite": {
+    "frame": { "x": 570, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 250
+   },
+   "MCAnim 20.aseprite": {
+    "frame": { "x": 600, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 250
+   },
+   "MCAnim 21.aseprite": {
+    "frame": { "x": 630, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 250
    }
  },
  "meta": {
@@ -149,7 +181,7 @@
   "version": "1.2.30",
   "image": "MCAnim.png",
   "format": "RGBA8888",
-  "size": { "w": 540, "h": 30 },
+  "size": { "w": 660, "h": 30 },
   "scale": "1",
   "frameTags": [
   ],

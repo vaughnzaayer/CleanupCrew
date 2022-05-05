@@ -9,7 +9,7 @@ class AnimationHandler:
         self.allFrames = []
         for frame in self.spriteSheet.data['frames']:
             frame = self.spriteSheet.parse_sprite(frame)
-            frame = pygame.transform.scale(frame, (120, 120))
+            # frame = pygame.transform.scale(frame, (120, 120))
             self.allFrames.append(frame)
 
     def createAnim(self, listOfFrames, frameTime, requiresInverse):
